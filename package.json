@@ -1,0 +1,22 @@
+{
+  "name": "sdhacks2016",
+  "version": "1.0.0",
+  "description": "Application folder for SD HACKS 2016",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viguan/SD-Hacks-2016.git"
+  },
+  "author": "Vicky Guan, Leighton Chen, Brian Wuerstle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viguan/SD-Hacks-2016/issues"
+  },
+  "homepage": "https://github.com/viguan/SD-Hacks-2016#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
