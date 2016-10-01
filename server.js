@@ -19,6 +19,7 @@ var server = app.listen(8080, function (req, res) {
 
 // Variables
 var height = 0;
+var weight = 0;
 
 // Routes
 app.get('/', function (req, res) {
@@ -41,17 +42,12 @@ app.get('/settings', function(req,res) {
     	res.sendFile(__dirname + "/public/settings.html");
 });
 
-function processAllFieldsOfForm(req,res) {
-	var form = new formidable.IncomingForm();
+app.post('/settings', function(req,res) {
+	height = req.body.height;
+	weight = req.body.weight;
+	console.log("height is " + height + '\n' + "weight is " + weight);
+})
 
-	form.parse(req, function (err, fields, files) {
-		res.writeHead(200, {
-			'content-type': 'text/plain'
-		});
-		res.write('received the data:\n\n');
-		res.end(util.inspect({
-			fields:fields,
-			files: files
-		}));
-	});
-}
+// app.post('/settings', function(req, res) {
+//     console.log('Username: ' + req.body.username);
+// });
