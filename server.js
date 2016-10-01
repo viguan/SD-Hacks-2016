@@ -21,3 +21,18 @@ app.get('/', function (req, res) {
     if (!res.headersSent)
     	res.sendFile(__dirname + "/public/index.html");
 });
+
+app.get('/today', function(req,res) {
+    if (!res.headersSent)
+    	res.sendFile(__dirname + "/public/today.html");
+});
+
+app.get('/journal', function(req,res) {
+    if (!res.headersSent)
+    	res.sendFile(__dirname + "/public/journal.html");
+});
+
+app.get('/settings', function(req,res) {
+    if (!res.headersSent)
+    	res.sendFile(__dirname + "/public/settings.html");
+});
