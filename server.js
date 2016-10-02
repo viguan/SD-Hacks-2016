@@ -6,6 +6,9 @@ var express = require('express'),
 	moment = require('moment'),
 	formidable = require("formidable");
 
+var ejs = require('ejs');
+var fs = require('fs');
+
 app.use(express.static(__dirname + '/public'));                 // static files
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
@@ -28,13 +31,24 @@ app.get('/', function (req, res) {
 });
 
 app.get('/today', function(req,res) {
+	console.log("GLOBAL: " + height + " " + weight) 
     if (!res.headersSent)
     	res.sendFile(__dirname + "/public/today.html");
 });
 
 app.get('/journal', function(req,res) {
-    if (!res.headersSent)
-    	res.sendFile(__dirname + "/public/journal.html");
+	fs.readFile(__dirname + "/public/journal.html", 'utf-8', function(err, content) {
+		if (err) {
+			res.end('error');
+			return;
+		}
+	
+		var settings = [height, weight]
+		var renderedHtml = ejs.render(content, {settings: settings});
+		res.end(renderedHtml);
+	});
+    // if (!res.headersSent)
+    // 	res.sendFile(__dirname + "/public/journal.html");
 });
 
 app.get('/settings', function(req,res) {
@@ -46,6 +60,7 @@ app.post('/settings', function(req,res) {
 	height = req.body.height;
 	weight = req.body.weight;
 	console.log("height is " + height + '\n' + "weight is " + weight);
+	res.sendFile(__dirname + "/public/settings.html");
 })
 
 // app.post('/settings', function(req, res) {
