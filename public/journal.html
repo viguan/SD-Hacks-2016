@@ -46,11 +46,10 @@
 
     <div class="container">
     	<center>
-	      <p style = "font-size:20px">Your weight goal is <b><%= settings[1] %>lbs</b> <br/>
+	      <p style = "font-size:20px">Your weight goal is <b><%= settings[1] + 10 %>lbs</b> <br/>
 	         You are <b><%= settings[0] %>in</b> <br/>
 	         As of <b>October 1st, 2016</b>, you are <b>250lbs</b><br/>
-	         Based on these numbers, your BMI is <b>33.28</b><br/><br/>
-	         (da formula is: (weight in lbs*703)/height in inches^2)
+	         Based on these numbers, your BMI is <b><%= settings[2] %></b><br/><br/>
 	      </p>
 	    </center>
 

@@ -23,6 +23,8 @@ var server = app.listen(8080, function (req, res) {
 // Variables
 var height = 0;
 var weight = 0;
+var trueWeight = undefined;
+var bmi = 0;
 
 // Routes
 app.get('/', function (req, res) {
@@ -43,7 +45,8 @@ app.get('/journal', function(req,res) {
 			return;
 		}
 	
-		var settings = [height, weight]
+		bmi = (trueWeight*703)/(height*height)
+		var settings = [height, weight, bmi]
 		var renderedHtml = ejs.render(content, {settings: settings});
 		res.end(renderedHtml);
 	});
@@ -57,8 +60,8 @@ app.get('/settings', function(req,res) {
 });
 
 app.post('/settings', function(req,res) {
-	height = req.body.height;
-	weight = req.body.weight;
+	height = parseInt(req.body.height);
+	weight = parseInt(req.body.weight);
 	console.log("height is " + height + '\n' + "weight is " + weight);
 	res.sendFile(__dirname + "/public/settings.html");
 })
@@ -66,3 +69,5 @@ app.post('/settings', function(req,res) {
 // app.post('/settings', function(req, res) {
 //     console.log('Username: ' + req.body.username);
 // });
+
+
